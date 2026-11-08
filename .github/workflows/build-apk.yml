@@ -25,12 +25,17 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
+          # Sesuaikan baris di bawah ini jika folder project kamu ada di dalam sub-folder (misal: KalenderTabung)
+          # Hapus tanda pagar (#) jika foldernya memang ada di sub-folder:
+          # build-root-directory: KalenderTabung
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+        # working-directory: KalenderTabung  # Uncang pagar ini jika folder project di sub-folder
 
       - name: Build Debug APK
         run: ./gradlew --no-daemon assembleDebug
+        # working-directory: KalenderTabung  # Uncang pagar ini jika folder project di sub-folder
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
